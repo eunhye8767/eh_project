@@ -12,6 +12,7 @@
             }
             50% {
                 transform: translate(300px, 0);
+                background: red;
             }
             100% {
                 transform: translate(400px, 500px);
@@ -25,7 +26,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: sample-ani 2s linear 3;
+            /* animation: sample-ani 3s linear infinite alternate; */
+            animation: sample-ani 3s linear forwards;
+        }
+        .box:hover {
+            animation-play-state: paused;
         }
     </style>
 </head>

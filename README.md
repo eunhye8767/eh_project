@@ -5,3 +5,5 @@
 1. [01_css_animaion] CSS 변환과 애니메이션
    - Transform : /01_css_animation/transform.html
    - Transition : /01_css_animation/transition.html
+   - Animation 1 : /01_css_animation/animation1.html
+   - Animation 2 : /01_css_animation/animation2.html
