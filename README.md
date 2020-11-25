@@ -7,3 +7,4 @@
    - Transition : /01_css_animation/transition.html
    - Animation 1 : /01_css_animation/animation1.html
    - Animation 2 : /01_css_animation/animation2.html
+   - Animation 3 : /01_css_animation/animation3.html
