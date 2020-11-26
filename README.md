@@ -25,3 +25,4 @@
    - 자바스크립트 워밍업 : /04_js_start/04-1.txt
    - DOM 스크립트 1 : /04_js_start/04-2.html
    - DOM 스크립트 2 : /04_js_start/04-3.html
+   - DOM 스크립트 3 : /04_js_start/04-4.html

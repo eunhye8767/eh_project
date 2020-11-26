@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .characters {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #fff000;
+        }
+        .ilbuni {
+            width: 100px;
+            cursor: pointer;
+        }
+        .characters .ilbuni {
+            display: inline-block;
+        }
+        .special {
+            border: 10px dashed red;
+        }
+        .special {
+            border: 10px dotted red;
+        }
+    </style>
+</head>
+<body>
+    <div class="characters">
+        <div class="ilbuni a">
+            <img src="images/ilbuni_0.png" alt="일분이">
+        </div>
+        <div class="ilbuni b">
+            <img src="images/ilbuni_1.png" alt="일분이">
+        </div>
+        <div class="ilbuni c">
+            <img src="images/ilbuni_2.png" alt="일분이">
+        </div>
+    </div>
+    <div class="ilbuni d">
+        <img src="images/ilbuni_3.png" alt="일분이">
+    </div>
+
+    <script>
+        /*
+            엘리먼트를 제거 했다가 붙였다가 하는 조립하는 방법
+            새로 만들어서 붙이기도 하는 방법
+        */ 
+
+        // 문단 태그를 만든다
+        const pElem = document.createElement('p');
+        // 만든 문단에 내용을 넣어준다.
+        pElem.innerHTML = '<a href="#!">안녕?</a>';
+        
+        // 캐릭터 마지막 영역에 추가
+        const charactersElem = document.querySelector('.characters');
+        // .characters 자식에 마지막에 추가한 것.
+        charactersElem.appendChild(pElem);
+
+        // 이번엔 일분이 b 를 삭제
+        charactersElem.removeChild( document.querySelector('.b') )
+
+        // 클래스를 추가하는 방법
+        const ilbuni = document.querySelector('.ilbuni');
+        /*
+            classList.add(클래스) 와 className = '클래스' 는
+            add 는 클래스를 추가한 것이고
+            className 은 클래스 자체를 바꿔주는 것이다.
+        */ 
+        ilbuni.classList.add('special');
+
+        // 클래스를 삭제하는 방법
+        ilbuni.classList.remove('ilbuni');
+
+        // 클래스 토글(스위치)로 작동하는 방법
+        ilbuni.classList.toggle('special');
+
+    </script>
+</body>
+</html>
