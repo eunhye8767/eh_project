@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .characters {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #fff000;
+        }
+        .ilbuni {
+            width: 100px;
+            cursor: pointer;
+        }
+        .characters .ilbuni {
+            display: inline-block;
+        }
+        .special {
+            border: 10px dashed red;
+        }
+    </style>
+</head>
+<body>
+    <div class="characters">
+        <div class="ilbuni a">
+            <img src="images/ilbuni_0.png" alt="일분이">
+        </div>
+        <div class="ilbuni b">
+            <img src="images/ilbuni_1.png" alt="일분이">
+        </div>
+        <div class="ilbuni c">
+            <img src="images/ilbuni_2.png" alt="일분이">
+        </div>
+    </div>
+    <div class="ilbuni d">
+        <img src="images/ilbuni_3.png" alt="일분이">
+    </div>
+
+    <script>
+        /*
+            - 기본으로 const 사용하되 나중에 값이 변할경우 let을 사용.
+            - querySelector 경우, 여러개가 있어도 맨 처음 것만 선택하게됨.
+            - querySelector 처럼 여러 개중 맨처음것만 선택하는 것이 아닌
+            여러개 모두를 선택하고 싶을 땐 querySelectorAll
+        */
+        const ilbuni = document.querySelector('.a');
+        const ilbuni_b = document.querySelector('.characters .ilbuni:nth-child(2)');
+        const ilbuniGrop = document.querySelectorAll('.ilbuni')
+        console.log(ilbuni);
+        console.log(ilbuni_b);
+        console.log(ilbuniGrop);
+        
+        /*
+            querySelectorAll 로 콘솔 확인해보면 값을 볼 수 있는데 
+            그 때 index 값 확인이 가능함. 그 번호를 아래 처럼 기입을 하면
+            .ilbuni.c 영역을 콘솔에서 확인할 수가 있다.
+        */ 
+        console.log(ilbuniGrop[2]);
+    </script>
+</body>
+</html>
