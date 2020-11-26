@@ -23,3 +23,5 @@
 
 4. [04_js_start] 인터랙티브 웹 개발을 위한 자바스크립트 시작하기
    - 자바스크립트 워밍업 : /04_js_start/04-1.txt
+   - DOM 스크립트 1 : /04_js_start/04-2.html
+   - DOM 스크립트 2 : /04_js_start/04-3.html
