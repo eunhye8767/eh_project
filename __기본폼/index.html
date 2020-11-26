@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS 3D</title>
+    <style>
+        .world, .world2 {
+            width: 80vw;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .world {
+            background: yellow;
+            perspective: 500px;
+        }
+        .world2 {
+            background: green;
+        }
+        .card, .card2 {
+            width: 100px;
+            height: 150px;
+            border-radius: .5em;
+            margin: 1em;
+            background: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            transform: rotateY(45deg);
+        }
+        .card2 {
+            transform: perspective(500px) rotateY(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="world">
+        <div class="card">CARD 1</div>
+        <div class="card">CARD 2</div>
+        <div class="card">CARD 3</div>
+    </div>
+    <div class="world2">
+        <div class="card2">CARD 1</div>
+        <div class="card2">CARD 2</div>
+        <div class="card2">CARD 3</div>
+    </div>
+</body>
+</html>
