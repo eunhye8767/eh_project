@@ -26,3 +26,6 @@
    - DOM 스크립트 1 : /04_js_start/04-2.html
    - DOM 스크립트 2 : /04_js_start/04-3.html
    - DOM 스크립트 3 : /04_js_start/04-4.html
+
+5. [05_js_event] 자바스크립트의 이벤트 다루기
+   - 이벤트의 기본 동작 : /05_js_event/05-1.html
