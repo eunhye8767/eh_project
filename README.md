@@ -32,3 +32,4 @@
    - this와 이벤트 객체 : /05_js_event/05-2.html
    - 움직이는 캐릭터 예제로 클릭이벤트 익히기 : /05_js_event/05-3.html
    - 이벤트의 위임 : /05_js_event/05-4.html
+   - 이벤트의 위임 보강 : /05_js_event/05-5.html
