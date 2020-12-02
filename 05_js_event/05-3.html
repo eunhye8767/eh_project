@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/05-3.css">
+</head>
+<body>
+    <div class="stage">
+        <div class="ilbuni"></div>
+        <div class="ilbuni"></div>
+        <div class="ilbuni"></div>
+    </div>
+
+    <script>
+        (function() {
+            const ilbuniGrop = document.querySelectorAll('.ilbuni');
+            const stage = document.querySelector('.stage');
+
+            function clickHandler() {
+                /*
+                    방법1. 해당 ilbuni 부모에서 클릭한 ilbuni(this)를 지워주는 방법.
+                    stage.removeChild(this);
+                */
+
+                /*
+                    방법2. 클릭한 ilbuni 부모에서 클릭한 ilbuni 지우기.
+                    this의 부모를 가르키는 방법 this.parentNode    
+                */ 
+                this.parentNode.removeChild(this);
+            }
+
+            for ( let i=0; i<ilbuniGrop.length; i++) {
+                ilbuniGrop[i].addEventListener('click', clickHandler);
+            }
+        })();
+    </script>
+</body>
+</html>
