@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/05-3.css">
+</head>
+<body>
+    <div class="stage">
+        <div class="ilbuni"></div>
+        <div class="ilbuni"></div>
+        <div class="ilbuni"></div>
+    </div>
+
+    <script>
+        (function() {
+            
+            /*
+                const ilbuniGrop = document.querySelectorAll('.ilbuni');
+                const stage = document.querySelector('.stage');
+
+                function clickHandler() {
+                    stage.removeChild(this);
+                }
+
+                for ( let i=0; i<ilbuniGrop.length; i++) {
+                    ilbuniGrop[i].addEventListener('click', clickHandler);
+                }
+                for문을 사용한 클릭 이벤트로,
+                풀어서 보면 아래와 같은 형식임을 알 수 있는데..
+                    ilbuniGrop[0].addEventListener('click', clickHandler);
+                    ilbuniGrop[1].addEventListener('click', clickHandler);
+                    ilbuniGrop[2].addEventListener('click', clickHandler);
+                횟수가 많아질 수록 메모리를 잡아먹기 때문에
+                성능에 좋지 못 한다고 한다.
+
+            */ 
+            
+            // 이벤트 위임
+            // ilbuni 부모에게 이벤트를 위임하여 처리.
+            const stage = document.querySelector('.stage');
+
+            function clickHandler(e) {
+                /*
+                    stage.removeChild(e.target);
+                    위 경우, ilbuni가 아닌 배경을 클릭하면 콘솔 에러가 나타남
+                    그래서 클릭한 것이 ilbuni 인지 확인하는 조건을 걸어줘야 한다.
+                */ 
+
+                /*
+                    classList.contains => 해당 영역에 "00" 클래스를 갖고 있는 지
+                    Boolean 값 체크 (true, false)
+                */
+                if ( e.target.classList.contains('ilbuni') ) {
+                    // .ilbuni 값을 갖고 있으면 removeChild 실행
+                    stage.removeChild(e.target);
+                }
+            }
+
+            stage.addEventListener('click', clickHandler);
+            
+        })();
+    </script>
+</body>
+</html>
