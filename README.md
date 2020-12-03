@@ -40,3 +40,4 @@
 
 7. [07_object] 객체(Object)
    - 객체 1 : /07_object/07-1.html
+   - 객체 2 : /07_object/07-2.html

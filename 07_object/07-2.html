@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+</head>
+<body>
+    <h1>Object</h1>
+
+    <script>
+        /*
+            객체를 2개 만들기.
+        */
+        const person = {
+            name: '일분이',
+            age: 10,
+
+            /*
+                속성 값으로 console.log 에 활용해보기
+                
+                >> name 경우 전역변수로 window.name = ''; 
+                   console.log('안녕하세요? 저는 '+ name +'이고 나이는 '+ age +'살이에요.');
+                   위 콘솔로그 시, age 에서만 오류가 난다.
+                   const age; let age; 로 변수를 만들지 않았기 때문에 오류가 발생.
+                   이 경우, 속성 앞에 this 를 써주면 된다.
+                
+                >> this 란 메서드를 실행한 주체객체를 가리킨다 라고 생각하면 된다.
+                   person.introduce(); 에서 
+                   introduce 의 person 이 주체객체 라고 생각하면 된다.
+
+                function foo() {
+                    console.log(this);
+                }   
+                foo();
+                라고 실행했을 경우,
+                window 전역객체인 this 가 실행이 된다.
+
+                addEventListener 에서의 this는 이벤트를 실행한 대상이 되고
+                함수에서는 주체 객체가 된다!
+            */ 
+            introduce: function() {
+                console.log('안녕하세요? 저는 '+ this.name +'이고 나이는 '+ this.age +'살이에요.');
+            }
+        }
+        const person2 = {
+            name: '이분이',
+            age: 8,
+            introduce: function() {
+                console.log('안녕하세요? 저는 '+ this.name +'이고 나이는 '+ this.age +'살이에요.');
+            }
+        }
+
+        person.introduce();
+        person2.introduce();
+    </script>
+</body>
+</html>
