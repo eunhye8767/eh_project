@@ -33,3 +33,7 @@
    - 움직이는 캐릭터 예제로 클릭이벤트 익히기 : /05_js_event/05-3.html
    - 이벤트의 위임 : /05_js_event/05-4.html
    - 이벤트의 위임 보강 : /05_js_event/05-5.html
+
+6. [06_example] 예제, 3개의 문
+   - 3개의 문 : /06_example/index.html
+   - index페이지 소스 보강 : /06_example/index2.html
