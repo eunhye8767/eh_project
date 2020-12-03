@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+</head>
+<body>
+    <h1>Object</h1>
+
+    <script>
+        /*
+            const person = {
+                name: '일분이',
+                age: 10,
+
+                introduce: function() {
+                    console.log('안녕하세요? 저는 '+ this.name +'이고 나이는 '+ this.age +'살이에요.');
+                }
+            }
+            const person2 = {
+                name: '이분이',
+                age: 8,
+                introduce: function() {
+                    console.log('안녕하세요? 저는 '+ this.name +'이고 나이는 '+ this.age +'살이에요.');
+                }
+            }
+
+            위 객체소스를 하나로 만드는 방법
+            (구조는 같되 각각의 속성은 다른 객체들을 만드는법)
+        */ 
+        
+        // 생성자 (constructor)
+        // 객체를 생성하는 함수의 경우 이름을 대문자로 써준다. Person()
+        /*
+            Person(매개변수1,매개변수2)
+        */ 
+        function Person(nickname, age) {
+            this.nickname = nickname;
+            this.age = age;
+            this.introduce = function () {
+                console.log('안녕하세요? 저는 '+ this.nickname +'이고 나이는 '+ this.age +'살이에요.');
+            }
+        }
+
+        /*
+            Person('인자1', '인자2')
+            
+            ★ 생성자 함수를 호출할땐 new 를 붙여야 된다. ★ 
+            그래야 각각 객체의 this가 그 객체들을 가르키게 된다.
+            new 붙이지 않으면 this는 전역객체인 window.this를 가르키게 됨.
+        */ 
+        /*
+            생성자 함수로 생성해 낸 각각의 개별 객체(person1과 person2)를
+            인스턴스(instance) 라고 부른다.
+            const person1 = new Person('일분이', 10);
+        */
+        const person1 = new Person('일분이', 10);
+        const person2 = new Person('이분이', 8);
+
+        person1.introduce();
+        person2.introduce();
+
+    </script>
+</body>
+</html>
