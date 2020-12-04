@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+</head>
+<body>
+    <h1>Object</h1>
+
+    <!-- script>
+        
+        /*
+            // 생성자 (constructor)
+            function Person(nickname, age) {
+                this.nickname = nickname;
+                this.age = age;
+                this.introduce = function () {
+                    console.log('안녕하세요? 저는 '+ this.nickname +'이고 나이는 '+ this.age +'살이에요.');
+                }
+            }
+
+            // 인스턴스(instance)
+            const person1 = new Person('일분이', 10);
+            const person2 = new Person('이분이', 8);
+
+            person1.introduce();
+            person2.introduce();
+
+            위 소스대로 하면 
+            this.일분이, this.10, introduce
+            this.이분이, this.10, introduce
+            이렇게 함수별로 객체가 생성이 되서 메모리 낭비.
+
+            introduce 경우 일분이, 이분이와 동일한 소스로 사용되기 때문에
+            공유할 수 있게 만드는 것이 메모리성에서도 좋음.
+        */
+
+
+        /*
+            nicname, age 처럼
+            각 인스턴스 별로 값이 다를 경우
+            생성자 안에 넣어주면 되고 
+            introduce 메서드 처럼 
+            서로 공유해야하는 건 prototype 객체로
+            적용해주면 된다.
+        */ 
+
+        // 생성자 (constructor)
+        function Person(nickname, age) {
+            this.nickname = nickname;
+            this.age = age;
+        }
+
+        // 객체함수명.prototype.실행함수
+        /*
+            prototye 객체는 함수 하나에 쌍으로 딱 하나만 있는 것!
+            개별 인스턴스 들이 공유한다고 생각하면 된다.
+        */ 
+        Person.prototype.introduce = function () {
+                console.log('안녕하세요? 저는 '+ this.nickname +'이고 나이는 '+ this.age +'살이에요.');
+        }
+
+        // 인스턴스(instance)
+        const person1 = new Person('일분이', 10);
+        const person2 = new Person('이분이', 8);
+
+        person1.introduce();
+        person2.introduce();
+
+    </script -->
+
+    <script>
+        // 카드 생성자 만들기
+        function Card(num, color) {
+            this.num = num;
+            this.color = color;
+        }
+
+        // 공통된 정보는 prototype 으로
+        // width 와 height 는 메서드를 이용해 적용하는 것이 좋다. 아래는 예제.
+        Card.prototype.width = 100;
+        Card.prototype.hgieth = 100;
+
+        // 인스턴스
+        const card1 = new Card(1, 'green');
+        const card2 = new Card(7, 'blue');
+
+        console.log(card1.color);
+        console.log(card2.color);
+        console.log(card1.width);
+        console.log(card2.width);
+
+    </script>
+</body>
+</html>

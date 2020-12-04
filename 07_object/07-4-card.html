@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+
+    <style>
+        .card {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 150px;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-size: 3rem;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object</h1>
+
+    <script>
+        // 실제 카드가 보여지게 만들기
+        function Card(num, color) {
+            this.num = num;
+            this.color = color;
+            // 아래 prototype 으로 만든 함수를 실행해주면 된다.
+            this.init();
+        }
+
+        /*
+            prototype 도 객체이기 때문에 아래와 같은
+            Card.prototype = { } 형식이 가능하다.
+        */
+        
+        /*
+            console.log(card1);
+            >>  __proto__ 가 가르키는 것이 prototype
+            >> 아래 화살표 누르면 constructor 보여지는데
+               여기에서 card1에 대한 생성자 정보 확인이 가능하다.
+            >> 그래서 
+               Card.prototype = {
+                  constructor: Card
+               }
+               constructor: Card 반드시 써줘야 한다.
+               (constructor 속성에 Card 생성자 이름 꼭!!!!)
+
+            >> Card.prototype.color 처럼
+               .XX 으로 쓰는 방법과 차이점이라고 생각하면 됨.    
+        */   
+
+        Card.prototype = {
+            constructor: Card,
+            init: function () {
+                // DOM 구성해보기
+                // div를 만든다.
+                const mainElem = document.createElement('div');
+                // 위에 만든 div에 컬러 this.color 로 적용한다.
+                mainElem.style.color = this.color;
+                mainElem.innerHTML = "<p>"+this.num+"</p>";
+                mainElem.classList.add('card');
+
+                // body에 div 생성한 것을 붙인다.
+                // 컨텐이너를 만들었다면 그 변수를 써주면 된다.
+                document.body.appendChild(mainElem);
+            }
+        }
+
+        const card1 = new Card(1, 'green');
+        const card2 = new Card(7, 'blue');
+
+        
+    </script>
+</body>
+</html>

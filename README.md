@@ -14,7 +14,7 @@
    - CSS 3D 1 : /02_css_3D/css-3d-1.html
    - CSS 3D 2 : /02_css_3D/css-3d-2.html
    - CSS 3D 3 : /02_css_3D/css-3d-3.html
-                /02_css_3D/css-3d-3-iever.html
+   - CSS 3D 3I(ie버전) : /02_css_3D/css-3d-3-iever.html
 
 
 3. [03_css_flex] CSS FLEX
@@ -42,3 +42,5 @@
    - 객체 1 : /07_object/07-1.html
    - 객체 2 : /07_object/07-2.html
    - 객체 3 : /07_object/07-3.html
+   - 객체 4 : /07_object/07-4.html
+   - 생성자 함수로 DOM 만들기 : /07_object/07-4-card.html
