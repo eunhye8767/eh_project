@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+    img {
+        max-width: 100%;
+    }
+    .content {
+        /* viewport height */
+        height: 1000vh;
+        padding: 20%;
+        background: yellowgreen;
+    }
+    .output {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        font-size: 2rem;
+        font-weight: 200;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.4);
+    }
+    .ilbuni {
+        width: 100px;
+        margin: 30px auto;
+        transition: 1s;
+    }
+    .ilbuni.zoom {
+        transform: scale(2);
+    }
+    </style>
+</head>
+<body>
+    <div class="output">output</div>
+    <div class="content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo culpa id ratione alias illum aliquam accusamus deleniti dolores dignissimos, temporibus iste perspiciatis voluptatem repudiandae debitis similique fugiat dolor, doloremque quos mollitia repellendus iure exercitationem molestiae ab! Veritatis harum voluptate enim ducimus amet vitae veniam dignissimos possimus facilis eaque minus similique, vel commodi sed? Sequi distinctio debitis numquam, necessitatibus officiis quam, sed rerum id culpa totam provident repellendus iste, laborum maiores, consequuntur fugiat voluptatibus? Ad, architecto. Ipsam minus quis, ea quas, ex impedit quia distinctio commodi expedita laudantium dolores cum? Quisquam, odit, laboriosam consequuntur expedita optio laudantium. Optio laboriosam, repellendus laborum.
+        </p>
+        <figure class="ilbuni">
+            <img src="images/ilbuni_0.png" alt="일분이">
+        </figure>
+    </div>
+
+    <!-- script>
+        (function() {
+            
+            const outputElem = document.querySelector('.output');
+            const ilbuniElem = document.querySelector('.ilbuni');
+            window.addEventListener('scroll', function() {
+                /*
+                    output 영역에 현재 페이지 내에서 세로 스크롤 위치값 나타내기
+                    outputElem.innerHTML = window.pageYOffset;
+                */ 
+                
+                /*
+                    output 영역에 일분이 캐릭터 스크롤 위치값 나타내기
+                    outputElem.innerHTML = ilbuniElem.offsetTop;
+                    offsetTop 경우, 처음 위치값만 가져온다!!
+                    >> offsetTop = 가장 가까운 부모 엘리먼트의 상단에서부터의 픽셀값
+                       (조상이 아닌 부모!!)
+                */ 
+                
+                /*
+                    매번 스크롤할때마다 일분이 위치값을 알기위해
+                    메서드(=객체의 속성중이 값이 함수)를 이용하려고 한다.
+                    메서드 = .getBoundingClientRect()
+                    
+                    console.log(ilbuniElem.getBoundingClientRect());
+                    >> 콘솔로 보면 현재 페이지내에서 해당 정보(크기, 위치) 확인 가능
+                    >> top = y, x = left
+                    >> 익스플로러에서는 x, y를 지원안하고 top, left를 지원.
+                       x, y 보단 top, left 사용
+                       ilbuniElem.getBoundingClientRect().top;
+                */
+                // console.log(ilbuniElem.getBoundingClientRect());
+                outputElem.innerHTML = ilbuniElem.getBoundingClientRect().top;
+            })
+
+        })();
+    </script -->
+
+    <script>
+        /*
+            addEventListener 경우, 소스안에 구체적으로 기입하는 것보단 
+            함수를 만들어서 적용하는 것이 바람직.
+            (필요한 함수에 따라서 추가, 삭제 하는 것이 좋다)
+         */ 
+        (function(){
+
+            const outputElem = document.querySelector('.output');
+            const ilbuniElem = document.querySelector('.ilbuni');
+
+            function showValue() {
+                let posY = ilbuniElem.getBoundingClientRect().top
+                outputElem.innerHTML = posY;
+
+                // window.innerHeight 브라우저의 세로값.
+                // posY가 브라우저 크기 기준 1/5 지점보다 작을 때 zoom 추가, 크면 삭제
+                if ( posY < window.innerHeight * 0.2 ) {
+                    ilbuniElem.classList.add('zoom');
+                } else {
+                    ilbuniElem.classList.remove('zoom');
+                }
+            }
+
+            window.addEventListener('scroll', function() {
+                showValue()
+            })
+
+            /*
+                함수로 만들어서 아래처럼 호출도 가능하다.
+             */ 
+            showValue();
+
+        })();
+    </script>
+
+</body>
+</html>

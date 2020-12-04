@@ -9,7 +9,6 @@
         max-width: 100%;
     }
     .content {
-        /* viewport height */
         height: 1000vh;
         padding: 20%;
         background: yellowgreen;
@@ -35,7 +34,7 @@
     </style>
 </head>
 <body>
-    <div class="output">output</div>
+    <div class="output"></div>
     <div class="content">
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo culpa id ratione alias illum aliquam accusamus deleniti dolores dignissimos, temporibus iste perspiciatis voluptatem repudiandae debitis similique fugiat dolor, doloremque quos mollitia repellendus iure exercitationem molestiae ab! Veritatis harum voluptate enim ducimus amet vitae veniam dignissimos possimus facilis eaque minus similique, vel commodi sed? Sequi distinctio debitis numquam, necessitatibus officiis quam, sed rerum id culpa totam provident repellendus iste, laborum maiores, consequuntur fugiat voluptatibus? Ad, architecto. Ipsam minus quis, ea quas, ex impedit quia distinctio commodi expedita laudantium dolores cum? Quisquam, odit, laboriosam consequuntur expedita optio laudantium. Optio laboriosam, repellendus laborum.
@@ -46,31 +45,25 @@
     </div>
 
     <script>
-        (function() {
-            
-            // 몇 px 정도 스크롤 했는 지 알아보기
-            // scroll 이벤트 써보기
-            /*
-                >> passiveSupported 기본값은 false (생략가능)
-                https://developer.mozilla.org/ko/docs/Web/API/EventTarget/addEventListener
-                window.addEventListener('scroll', function() {
-                }, passiveSupported )
-            */ 
-            // document 에 걸어도 된다. 지금은 window 로~
-            // output 영역에 스크롤 시 값 나오게 설정하기
-            const outputElem = document.querySelector('.output');
-            window.addEventListener('scroll', function() {
-                /*
-                    window.pageYOffset
-                    >> window 전역객체.
-                    >> 현재 페이지 내에서 스크롤을 얼마나 했는 지 px로 나타내주는 속성
-                    >> window.pageXOffset (가로축)
-                */
-                outputElem.innerHTML = window.pageYOffset;
-            })
+        const outputElem = document.querySelector('.output');
+        const ilbuniElem = document.querySelector('.ilbuni');
 
-        })();
+        function showValues() {
+            outputElem.innerHTML = ''
+                + '스크롤 된 양: <strong>'
+                + window.pageYOffset
+                + '</strong> / offsetTop: <strong>'
+                + ilbuniElem.offsetTop
+                + '</strong> / getBoundingClientRect(): <strong>'
+                + ilbuniElem.getBoundingClientRect().top
+                + '</strong>'
+        }
+
+        document.addEventListener('scroll', function() {
+            showValues();
+        });
+
+        showValues();
     </script>
-
 </body>
 </html>
