@@ -44,3 +44,6 @@
    - 객체 3 : /07_object/07-3.html
    - 객체 4 : /07_object/07-4.html
    - 생성자 함수로 DOM 만들기 : /07_object/07-4-card.html
+
+8. [08_scroll] 스크롤 다루기
+   - 스크롤 이벤트 다루기 : /08_scroll/08-1.html
