@@ -65,4 +65,5 @@
    - Animation 이벤트 : /09_animation/09-2.html
 
 10. [10_timing] 타이밍 제어하기
-   - setTimeout : /10_timing/10-1.html
+   - setTimeout  : /10_timing/10-1.html
+   - setInterval : /10_timing/10-2.html
