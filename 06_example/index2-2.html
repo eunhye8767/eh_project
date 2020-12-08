@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Interactive Web</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<style>
+		.stage {
+			width: 100vw;
+			height: 100vh;
+			background: #333;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.door {
+			width: 100px;
+			height: 150px;
+			position: relative;
+		}
+		.door-back {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000;
+			overflow: hidden;
+		}
+		.ilbuni {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100px;
+			height: 100px;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			background-size: contain;
+			/* 이동 모션을 줄 때 성능이 좋은 translate */
+			/* 
+				transform에서 3d가 붙은 것들이 하드웨어 가속을 이용해서
+				3d 속성을 사용하면 퍼포먼스를 향상 시킨다.
+				그래서 애플 웹사이트 경우 항상 3d를 적용한다고 한다.
+				예로 translateY 값을 적용해야 할 경우
+				transform: translateY()를 적용하는 것이 아니라
+				transform: translate3d(0, 100px, 0)를 적용. (transform: translate3d(x축, y축, z축))
+			 */
+			transform: translate3d(100%, 0, 0);
+			transition: .5s .5s;
+		}
+		.door:nth-child(1) .ilbuni { background-image: url('images/ilbuni_0.png');}
+		.door:nth-child(2) .ilbuni { background-image: url('images/ilbuni_1.png');}
+		.door:nth-child(3) .ilbuni { background-image: url('images/ilbuni_2.png');}
+		.door-body {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transform-origin: 0%;
+			transition: .5s;
+		}
+		.door:nth-child(1) .door-body { background: rgba(255,0,0,.5);}
+		.door:nth-child(2) .door-body { background: rgba(0,255,0,.5);}
+		.door:nth-child(3) .door-body { background: rgba(0,0,255,.5);}
+
+		/*
+			자바스크립트에서 클래스로 적용되게. 
+			door-opened 클래스가 부여되면 문이 열리는 효과를 줄 예정.
+		 */
+		.door-opened .door-body {
+			/* 회전체 자체에 3d 효과를 줌 - perspective */
+			transform: perspective(800px) rotateY(-110deg);
+		}
+		.door-opened .ilbuni {
+			transform: translate3d(0, 0, 0);
+		}
+	</style>
+</head>
+<body>
+	<div class="stage">
+		<div class="door" data-id="1">
+			<div class="door-back">
+				<div class="ilbuni"></div>
+			</div>
+			<div class="door-body"></div>
+		</div>
+		<div class="door" data-id="2">
+			<div class="door-back">
+				<div class="ilbuni"></div>
+			</div>
+			<div class="door-body"></div>
+		</div>
+		<div class="door" data-id="3">
+			<div class="door-back">
+				<div class="ilbuni"></div>
+			</div>
+			<div class="door-body"></div>
+		</div>
+	</div>
+
+	<script>
+		/*
+			function 함수이름(매개변수1, 매개변수2, ...) {}
+			함수이름(인자1, 인자2, ...);
+
+			인자1(값)이 매개변수1을 대체한다.
+		*/ 
+		(function(){
+			const stageElem = document.querySelector('.stage');
+			let currentItem;
+
+			// 활성화
+			function activate(elem) {
+				// targetElem.parentNode.classList.add('door-opened');
+				elem.classList.add('door-opened');
+				// currentItem = targetElem.parentNode;
+				currentItem = elem;
+			}
+
+			// 비활성화
+			function inactivate(elem) {
+				// currentItem.classList.remove('door-opened');
+				elem.classList.remove('door-opened');
+			}
+
+			/*
+				아래 함수를 활성화 / 비활성화 함수로 나눈다.
+				함수는 최대한 간단하게.
+				기능을 잘개 쪼개면 유연해진다 !!
+
+				function doorHandler(e) {
+					const targetElem = e.target;
+
+					if ( currentItem ) {
+						currentItem.classList.remove('door-opened');
+					}
+					if ( targetElem.classList.contains('door-body') ) {
+						targetElem.parentNode.classList.add('door-opened');
+						
+						currentItem = targetElem.parentNode;
+					}
+				};
+			*/ 
+
+			function doorHandler(e) {
+				const targetElem = e.target;
+				
+				
+				// if ( !targetElem.classList.contains('stage') && currentItem ) {
+					
+				// 	/*
+				// 		data-id 값을 주고 
+				// 		열려있는 문을 클릭하면 tgid 값이 NaN
+				// 		그래서 if 에서 값이 false면
+				// 		inactivate 함수실행X
+				// 		즉, 열려있는 문을 클릭했을 경우 닫혀지지 않음.
+				// 		==> 인프런 선생님에게 코드 맞게 쓴건지 문의함!(20.12.03)
+				// 	*/ 
+				// 	let tgid = parseInt(targetElem.parentNode.dataset.id);
+				// 	if ( tgid ) {
+				// 		inactivate(currentItem);
+				// 	}
+				// } 
+				// if ( targetElem.classList.contains('door-body') ) {
+				// 	/*
+				// 		 함수실행할때 () 사이에 targetElem.parentNode를 넣어주고 
+				// 		 targetElem.parentNode  ==>> elem;
+				// 	*/
+				// 	activate(targetElem.parentNode);
+				// }
+
+				// <--
+				// 위 소스들을 아래로 짧게 구현할 수 있음.
+				// 클릭할 대상을 stage가 아닌 door-body를 클릭했을 때만 동작하도록 설정.
+				if (targetElem.classList.contains('door-body')) {
+					if (currentItem) {
+						inactivate(currentItem);
+					}
+					activate(targetElem.parentNode);
+				}
+				// -->
+				
+			};
+
+			stageElem.addEventListener('click', doorHandler);
+
+			// 브라우저를 처음 열었을 때 첫번째 문 선택되어 있게 하려면.
+			activate( document.querySelector('.door:first-child'));
+		})();
+	</script>
+</body>
+</html>

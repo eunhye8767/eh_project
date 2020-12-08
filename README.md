@@ -37,6 +37,7 @@
 6. [06_example] 예제, 3개의 문
    - 3개의 문 : /06_example/index.html
    - index페이지 소스 보강 : /06_example/index2.html
+   - index2페이지 소스 보강(선생님 답변) : /06_example/index2-2.html
 
 7. [07_object] 객체(Object)
    - 객체 1 : /07_object/07-1.html
@@ -49,3 +50,6 @@
    - 스크롤 이벤트 다루기 : /08_scroll/08-1.html
    - 스크롤 위치에 따른 오브젝트 조작하기 : /08_scroll/08-2.html
    - 스크롤 위치에 따른 사용 Tip : /08_scroll/tip.html
+
+9. [09_animation] Transition/Animation 이벤트
+   - Transition 이벤트 : /09_animation/09-1.html
