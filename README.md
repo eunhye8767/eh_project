@@ -67,3 +67,5 @@
 10. [10_timing] 타이밍 제어하기
    - setTimeout  : /10_timing/10-1.html
    - setInterval : /10_timing/10-2.html
+   - requestAnimationFrame : /10_timing/10-3.html
+   - requestAnimationFrame(시간 설정) : /10_timing/10-3-2.html
