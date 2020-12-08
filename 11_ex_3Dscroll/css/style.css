@@ -1,0 +1,90 @@
+body {
+    height: 500vw;
+    font-family: 'Apple SD Gothic Neo', 'Roboto', 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
+    -webkit-overflow-scrolling: touch;
+    color: #555;
+    background: #fff000;
+    transition: background .5s;
+}
+
+.world {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* 브라우저 창 뷰사이즈 꽉차게 잡을 땐, vw / vh */
+    width: 100vw;
+    height: 100vh;
+    /* 공간 자체를 3D 영역으로 설정할 때 */
+    perspective: 1000px;
+}
+.stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* 하위 요소들도 3D 효과를 주기위해 stage에 preserve-3d 설정 */
+    transform-style: preserve-3d;
+}
+.house {
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+    /* 줌아웃 시키기  */
+    transform: translateZ(-490vw);
+}
+.wall {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,.8);
+}
+.wall-left {
+    /* 
+        width 값을 기존 width에서 1000을 곱해준 값을 적용해서
+        left 값을 그 반값인 500vw 적용한 것.
+        transform-origin은 기본값이 50% 50%(center).
+
+        left 값을 줘도 되고 
+        transform 에서 translateZ(-500vw) 값을 적용해줘도 된다.
+     */
+    /* left: -500vw; */
+    width: 1000vw;
+    background: #f8f8f8;
+    transform: rotateY(90deg) translateZ(-500vw);
+}
+.wall-right {
+    /* 
+        left와 동일하게 적용을 해준 후에
+        translateZ값을 주어 오른쪽에 붙여준다.
+        그 값은 기본 박스 width 값을 적용해준다.
+
+        right 경우 left로 주는 것이 아닌
+        translateZ로만 값을 적용할 때엔 동일 -500vw가 아닌 기본 박스 width - 100vw 뺀 값을 적용해준다.
+     */
+    /* left: -500vw; translateZ(100vw) left로 값을 적용할 경우 translateZ 값 */
+    width: 1000vw;
+    background: #f8f8f8;
+    transform: rotateY(90deg) translateZ(-400vw);
+}
+/*
+    wall 위치 조절
+    양수로 된 부분은 앞으로 튀어 나와보이고
+    음수로 된 부분은 뒤로 들어가져 보인다.
+ */
+.wall-front-a { transform: translateZ(300vw);}
+.wall-front-b { transform: translateZ(50vw);}
+.wall-front-c { transform: translateZ(-200vw);}
+.wall-front-d { transform: translateZ(-500vw);}
+
+.wall-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.wall-title {
+    font-size: 5rem;
+}
