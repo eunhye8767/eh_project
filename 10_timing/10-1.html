@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+
+    <style>
+        .btn {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn">취소</button>
+    <button class="btn2">실행</button>
+
+    <!-- script>
+
+        /*
+            setTimeout() 은
+            첫번째 매개변수 자리에 함수, 
+            두번째 매개변수 자리에 초(ms) => 1000ms = 1초
+            setTimeout(function(){
+                console.log('setTimeout!');
+            }, 1000);
+
+            - setTimeout 는 특정 시간 후에 1번 실행
+         */
+
+        let timeId;
+
+        function sample() {
+            console.log('sample!');
+        }
+
+        /*
+            setTimeout 함수의 실행 결과
+            setTimeout 함수가 리턴하는 게 있다면 그 값이 저장되게
+
+            setTimeout 함수는 리턴하는 값이 있다.
+            (반복이 되면) 1씩 늘어난다. 
+
+            - 원하는 시간만큼 지연시킬 때 사용
+            - 비동기 테스트 할 떄
+            - 의도적으로 다음 턴에 실행되게 처리할 때 (지연시킬 의도로 사용)
+
+         */ 
+        timeId = setTimeout(sample, 3000);
+        
+        /*
+            clearTimeout - setTimeout 을 취소해준다. (= 실행 취소)
+            setTimeout 은 1번만 실행되고
+            clearTimeout 은 setTimeout 을 취소시켜준다.
+
+            아래 clearTimeout(timeId) 하면
+            setTimeout 실행이 되질 않는다. 3초가 되기 전에 취소처리
+         */ 
+        clearTimeout(timeId);
+
+        // console.log(timeId); // 결과값1
+
+    </script -->
+
+    <script>
+        
+        // 취소 버튼을 누르면 clearTimeout가 실행되게.
+        let timeId;
+        const btn = document.querySelector('.btn');
+        const btn2 = document.querySelector('.btn2');
+
+        function play() {
+            console.log('paly');
+        }
+        function sample() {
+            console.log('sample!');
+        }
+        
+        timeId = setTimeout(sample, 3000);
+
+        // 3초전에 취소 버튼을 누르면 setTimeout 이벤트가 실행되지 않는다.
+        btn.addEventListener('click', function(){
+            clearTimeout(timeId);
+        });
+        
+        // 클릭하면 실행
+        btn2.addEventListener('click', function(){
+            setTimeout(play, 3000);
+        });
+
+        
+    </script>
+
+</body>
+</html>
