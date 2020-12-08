@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transition 이벤트</title>
+    <style>
+        .ball {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            /* margin: -15px 0 0 -15px; */
+            background: red;
+            border-radius: 50%;
+            transition: 1s;
+        }
+        .ball.start {
+            background: dodgerblue;
+        }
+        .ball.end {
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+
+    <script>
+        const ballElem = document.querySelector('.ball');
+        window.addEventListener('click', function(e) {
+            /*
+                console.log(e.clientX, e.clientY);
+                클릭한 위치의 X값과 Y값을 알아볼 때.
+                X값 e.clientX
+                Y값 e.clientY
+             */
+            /*
+                .ball css에 position 값이 없을 때
+                body 마진의 값을 그대로 부여되기 때문에
+                클릭했을 때 클릭한 지점과 위치가 맞지 않다.
+                이 경우 body에 css reset을 해주거나
+                지금처럼 ball에 position 값을 적용해주면 된다.
+             */  
+            /*
+                클릭한 지점을 가운데로
+                원을 이동하고 싶을 때에는
+                css 로 margin: -15px 0 0 -15px; 적용하거나
+                script 에서 ( e.clientX - 15 ) +'px, ' + ( e.clientY - 15) 빼주면 된다.
+                15란 숫자는 ball 크기의 1/2 사이즈.
+             */  
+            ballElem.style.transform = 'translate(' + (e.clientX - 15) +'px, ' + (e.clientY - 15) + 'px)';
+
+            // transition 으로 움직이는 엘리먼트에 이벤트 핸들러 적용
+            // transitionend - transition이 끝날 때 발생.
+            ballElem.addEventListener('transitionend', function(e) {
+                ballElem.classList.add('end');
+                /*
+                    transitionend 이벤트 핸들링에서 
+                    e.elapsedTime  => transition-duration 값을 확인할 수 있다.
+                 */ 
+                console.log(e.elapsedTime);
+                
+                /*
+                    transitionend 이벤트 핸들링에서 
+                    e.propertyName  => 바뀐 속성이 뭔지 알 수 있다.
+                 */ 
+                console.log(e.propertyName);
+            });
+            
+            ballElem.addEventListener('transitionstart', function(e) {
+                ballElem.classList.add('start');
+                /*
+                    transitionend 이벤트 핸들링에서 
+                    e.elapsedTime  => transition-duration 값을 확인할 수 있다.
+                 */ 
+                console.log(e.elapsedTime);
+
+                /*
+                    transitionend 이벤트 핸들링에서 
+                    e.propertyName  => 바뀐 속성이 뭔지 알 수 있다.
+                 */ 
+                console.log(e.propertyName);
+            });
+        });
+    </script>
+</body>
+</html>
