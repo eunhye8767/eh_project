@@ -107,8 +107,36 @@
     // (모바일 세로모드 > 가로모드 변환, 브라우저 창크기 변환)
     window.addEventListener('resize', resizeHandler);
 
+    // .stage 클릭 시 캐릭터 이벤트 생성
+    stageElem.addEventListener('click', function(e){
+        /*
+            style.css 
+            character 디폴트 값에 따라서
+            클릭했을 떄마다 left 값 기준으로 생성이 된다.
+            이 부분을 마우스로 클릭했을 때의 x 값으로 지정하게 수정해야 함!
+
+            left = 마우스 클릭한 위치 값 (e.clientX) / 브라우저 가로폭(window.innerWidth) * 100(% 비율로 나타나려면)
+            e.clientX / window.innerWidth * 100
+         */ 
+        // console.log(e.clientX / window.innerWidth * 100);
+        new Character({
+            /*
+                객체로 적용을 해준다.
+                객체 - xPos(속성) : e.clientX / window.innerWidth * 100(값)
+               
+                >> 객체 속성으로 넣는 이유는 
+                이 외에도 다른 속성을 추가하기 위해서 (다른 기능 적용을 위해)
+                
+                >> 객체에 속성값을 적용한 후에 Character 생성자 함수 매개변수 첫번째 자리에 입력
+                   예로 info 라고 적용 후
+                   생성자 함수에서 consol.log(info.xPos) 적용하면 xPos 값을 확인할 수 있다.
+            */ 
+            xPos : e.clientX / window.innerWidth * 100
+        });
+    });
+
     resizeHandler();
 
-    new Character();
+    // 문서 로드 시 캐릭터 생성이 아니기 떄문에 주석 new Character();
     
 })();
