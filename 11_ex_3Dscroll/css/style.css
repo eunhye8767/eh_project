@@ -1,6 +1,22 @@
 @keyframes ani-head {
     to { transform: rotateX(-10deg);}
 }
+@keyframes ani-running-leg {
+    form {
+        transform: rotateX(-30deg);
+    }
+    to {
+        transform: rotateX(30deg);
+    }
+}
+@keyframes ani-running-arm {
+    form {
+        transform: rotateY(30deg);
+    }
+    to {
+        transform: rotateY(-30deg);
+    }
+}
 
 body {
     height: 500vw;
@@ -218,6 +234,8 @@ body {
 }
 .character-leg-left .face-front { background-image: url('../images/ilbuni_leg_1.png'); }
 .character-leg-left .face-back { background-image: url('../images/ilbuni_leg_0.png'); }
+
+/* 캐릭터에 running 클래스가 붙으면 팔다리가 움직임 (스크롤 이벤트) */
 .character.running .character-leg-right { animation: ani-running-leg 0.2s alternate infinite linear; }
 .character.running .character-leg-left { animation: ani-running-leg 0.2s alternate-reverse infinite linear; }
 .character.running .character-arm { animation: ani-running-arm 0.2s alternate infinite linear; }
