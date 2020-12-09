@@ -109,4 +109,6 @@
 
     resizeHandler();
 
+    new Character();
+    
 })();
