@@ -88,3 +88,17 @@ body {
 .wall-title {
     font-size: 5rem;
 }
+.progress-bar-con {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 5px;
+    background: #555;
+}
+.progress-bar {
+    width: 0;
+    height: 5px;
+    background: #00a8ff;
+}
