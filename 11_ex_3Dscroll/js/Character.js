@@ -70,6 +70,10 @@ function Character(info) {
           .scrollState 기본값 = false
      */
     this.scrollState = false;
+    
+    // 바로 이전(마지막) 스크롤 위치 (초기값 0으로 세팅)
+    this.lastScrollTop = 0;
+
     // 메서드 실행
     this.init();
 }
@@ -164,6 +168,43 @@ Character.prototype = {
             }, 500)
 
             // console.log(self.scrollState);
+
+            // <-- lastScrollTop
+            /*
+                1. 스크롤을 올리고 내리고 기준을 잡기 위해
+                바로 이전에 스크롤 위치값과
+                현재 스크롤 위치값 비교를 해야 한다.
+                비교를 해서 작으면 'A', 크면 'B' 효과를 주려고 한다.
+
+                2. lastScrollTop 속성을 생성자 함수에서 만들고
+                   스크롤 이벤트 마지막 줄에 
+                   self.lastScrollTop = pageYOffset; 
+                   그러면 마지막 스크롤 위치의 값이 self.lastScrollTop
+                
+                   console.log 로 비교를 해보면 값이 다른 걸 알 수 있다. 
+
+                   console.log('lastScrollTop: '+self.lastScrollTop);
+                   console.log('pageYOffset: '+pageYOffset);
+
+                3. lastScrollTop 이 pageYOffset 보다 작으면 스크롤을 내린 것이고
+                   lastScrollTop 이 pageYOffset 보다 크면 스크롤을 올린 것이라고 정의
+             */ 
+            // console.log('lastScrollTop: '+self.lastScrollTop);
+            // console.log('pageYOffset: '+pageYOffset);
+            
+            // 이전 스크롤 위치와 현재 스크롤 위치를 비교.
+            if ( self.lastScrollTop > this.pageYOffset) {
+                // 이전 스크롤 위치가 크다면: 스크롤 올림
+                self.mainElem.setAttribute('data-direction', 'backward');
+            } else {
+                // 이전 스크롤 위치가 작면: 스크롤 내림
+                self.mainElem.setAttribute('data-direction', 'forward');
+            }
+
+            // 마지막 줄에 마지막 스크롤 위치값을 lastScrollTop에 적용해준다.
+            self.lastScrollTop = pageYOffset;
+
+            // lastScrollTop -->
 
         });
     }
