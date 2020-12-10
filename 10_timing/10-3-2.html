@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+</head>
+<body>
+
+    <script>
+        
+        let count = 0;
+
+        function time_1s() {
+            count++;
+
+            // count 값을 60으로 나눴을 때 나머지가 0일 때
+            // 최대 1ms(1/1000s)로 제한되며 1초에 60번 동작. 그래서 60으로 나누면 1초
+            if ( count % 60 === 0 ) {
+                console.log(count/60 + '초');
+            }
+
+            requestAnimationFrame(time_1s);
+        }
+        
+        function time_5ms() {
+            count++;
+
+            if ( count % 30 === 0 ) {
+                console.log(count/60 + '초');
+            }
+
+            requestAnimationFrame(time_5ms);
+        }
+        
+        function time_1ms() {
+            count++;
+
+            if ( count % 10 === 0 ) {
+                console.log(count/60 + '초');
+            }
+
+            requestAnimationFrame(time_1ms);
+        }
+
+        // time_1ms();
+        // time_1s();
+        time_5ms();
+        
+    </script>
+
+</body>
+</html>

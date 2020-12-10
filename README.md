@@ -1,3 +1,12 @@
+# Tip
+1. 질문. 벤더프리픽스를 해줘야 할 때 스크립트로 적용하면 어떻게 작업을 해줘야 하나요?
+   - 바닐라 스크립트로 적용할 땐 아래 3개 방식으로 처리해줘야 한다.
+   - elem.style.transform
+   - elem.style.webkitTransform
+   - elem.style.mozTransform
+   - 위 3개 방식 외엔 자동으로 해주는 autoprefixer 같은 라이브러리 사용
+
+
 # 인터랙티브 웹 개발 제대로 시작하기
 
 0. URL : https://eunhye8767.github.io/eh_project
@@ -37,6 +46,7 @@
 6. [06_example] 예제, 3개의 문
    - 3개의 문 : /06_example/index.html
    - index페이지 소스 보강 : /06_example/index2.html
+   - index2페이지 소스 보강(선생님 답변) : /06_example/index2-2.html
 
 7. [07_object] 객체(Object)
    - 객체 1 : /07_object/07-1.html
@@ -52,3 +62,13 @@
 
 9. [09_animation] Transition/Animation 이벤트
    - Transition 이벤트 : /09_animation/09-1.html
+   - Animation 이벤트 :  /09_animation/09-2.html
+
+10. [10_timing] 타이밍 제어하기
+   - setTimeout  : /10_timing/10-1.html
+   - setInterval : /10_timing/10-2.html
+   - requestAnimationFrame : /10_timing/10-3.html
+   - requestAnimationFrame(시간 설정) : /10_timing/10-3-2.html
+
+11. [11_ex_3Dscroll] 종합예제) 전진! 3D 스크롤
+   - /11_ex_3Dscroll/11-1.html (작업중)
