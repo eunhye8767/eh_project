@@ -62,6 +62,14 @@ function Character(info) {
     // .character 의 left 값을 마우스 클릭한 위치로 바꿔주는 것
     this.mainElem.style.left = info.xPos + '%';
 
+    /*
+       스크롤 멈추면 캐릭터의 팔, 다리 애니멤이션 중지
+       .scrollState -  스크롤 중인지 아닌 지를 체크하는 변수
+       >> 처음할 땐, this.scrollState 라고 선언해줘도 된다.
+          아래 false는 명시하기 위한 용도로 이해하면 됨.
+          .scrollState 기본값 = false
+     */
+    this.scrollState = false;
     // 메서드 실행
     this.init();
 }
@@ -92,9 +100,71 @@ Character.prototype = {
             window.addEventListener 의 this 는 window 를 가르킴.
          */ 
         const self = this;
+
         window.addEventListener('scroll', function() {
-            // this.mainElem.classList.add('running');
-            self.mainElem.classList.add('running');
+            /*
+                >> 스크롤하면 클래스를 붙여줘라
+                >> 스크롤을 멈추면 캐릭터 애니메이션을 중지시켜야 해서 아래 코드는 주석
+            
+                // this.mainElem.classList.add('running');
+                // self.mainElem.classList.add('running');
+                
+            */
+
+
+            /*
+                >> 무조건 self.scrollState 값을 초기화 해준다.
+                >> 처음 스크롤 시엔 scrollState 값이 없으므로 if문 실행
+                >> 스크롤 시에는 setTimeout이 .5초후에 일어나기 때문에 
+                   그 전에 clearTimeout을 실행시킨다.
+                   결국 처음 스크롤 시 if문 한 번만 실행하게 된다.
+
+                   if문과 setTimeout 만 써줄경우,
+                   running 클래스 추가되는 부분이 스크롤할때마다 계속 붙는
+                   비합리적인 방법을 clearTimeout 으로 개선.
+
+                >> 스크롤이 멈출 경우 
+                   clearTimeout은 실행이 되지 않기 때문에
+                   .5초에 setTimeout이 마지막 턴에서 실행된다.
+            */ 
+            clearTimeout(self.scrollState);
+
+            if (!self.scrollState) {
+                /*
+                    self.mainElem.classList.add('running');
+                    console.log('running 클래스 붙었음')
+                    
+                    위 부분이 실행될 떄 콘솔로그로 보면
+                    스크롤을 움직일때마다 running 부분이 계속 실행된다. (중복실행)
+                    비합리적.. 스크롤할때 1번만 실행되게 개선해야함.
+                 */ 
+                self.mainElem.classList.add('running');
+                console.log('running 클래스 붙었음')
+            }
+
+            /*
+                >> setTimeout 은 실행이 되면 어떤 값을 리턴해준다.
+                   console.log(self.scrollState)
+                   숫자가 생성되는 것을 볼 수 있다.
+                
+                >> self.scrollState - true 값을 false 로 바꿔주고
+                   running 클래스를 제거해준다.
+                   그러면 스크롤이 멈췄을 때 running 클래스값을 제거해준다.
+                   즉, 스크롤이 멈추면 캐릭터 애니메이션이 중지
+                
+                >> 스크롤 멈췄을 때에는 .5초후에 제대로 작동되는데
+                   스크롤 시에는 rungging 클래스가 계속 붙게된다.
+                   이 경우 clearTimeout 함수를 같이 사용해야 한다.
+             */ 
+             
+            self.scrollState = setTimeout(function(){
+                // false = 스크롤을 멈추게 하고 remove로 클래스 제거
+                self.scrollState = false;
+                self.mainElem.classList.remove('running');
+            }, 500)
+
+            // console.log(self.scrollState);
+
         });
     }
 };
