@@ -245,7 +245,7 @@ Character.prototype = {
                     >> run 메서드를 만든다. 
                 */
 
-                self.run(self);
+                self.run();
 
             } else if ( e.keyCode == 39) {
                 // 오른쪽
@@ -253,7 +253,7 @@ Character.prototype = {
                 self.mainElem.setAttribute('data-direction', 'right');
                 self.mainElem.classList.add('running');
 
-                self.run(self);
+                self.run();
             }
         });
 
@@ -272,8 +272,8 @@ Character.prototype = {
         });
         // 방향키 이벤트 -->
     },
-    run: function(self) {
-        // const self = this;
+    run: function() {
+        const self = this;
         /*
             캐릭터 좌우 움직임에 필요한 requstAnimationFrame
             1. run 이란 메서드를 만든다.
@@ -299,27 +299,20 @@ Character.prototype = {
         // 그리고 나서 키를 눌렀을 때(keydown) 해당 키 if 문에 self.run(); 써준다.
         /*
            requestAnimationFrame(self.run); 
-           이렇게 써주면 character 를 가르켰던 this가
-           window 를 가르키게 된다. 
-           이 부분을 수정해줘야 한다.  
+           requestAnimationFrame 안에서 콜백함수로 동작을 할 때
+           this 가 character 를 가르켰었는데 window 를 가르키게 된다. 
 
-           1. run 메서드에 매개변수 첫번째 자리에 self 를 넣어준다.
-           2. const self = this; 이건 없어도 된다.
-           3. requestAnimationFrame(self.run) 이 부분을 아래와 같이 수정
-              requestAnimationFrame(function(){
-                self.run(self);
-              });
-              run(self) 메서드에서 받은 인자를 그대로
-              requestAnimaitonFrame 에서 run을 실행할때 그대로 인자를 넣어주는 것.
-            4. 그리고 키보드를 눌렀을 때의 이벤트 에서도 
-               self.run(); 이 아닌 self.run(self); 를 써줘야 한다.
-            5. 매개변수 자리를 이용하는 방법외에도
-               bind 메서드로 this 를 직접 지정하는 방법도 있다
-               강의 23 8:55 참고.
-               Character-bind.js 참고
+           이 부분을 수정해줘야 한다.  
+           Character.js 처럼 매개변수 첫번째 자리에 self 를 이용해 수정하는 방법과
+           bind 메서드로 this 를 직접 지정하는 방법도 있다 (강의 23 8:55 참고)
+
+           bind 는 호출에 관계 없이 this 를 지정해준다.
+           ** https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+           >> requestAnimationFrame(self.run.bind(self)); 
+              첫번째 인자자리에 넣은 것이 this 로 지정해준다.
+              const self = this 명시해줘야 한다.
+           >> bind 가 예전엔 성능상 문제가 있었지만 지금은 많이 개선되어서 써주어도 된다!   
          */ 
-        requestAnimationFrame(function(){
-            self.run(self);
-        });
+        requestAnimationFrame(self.run.bind(self)); 
     }
 };
