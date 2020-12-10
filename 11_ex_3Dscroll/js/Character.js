@@ -86,6 +86,10 @@ function Character(info) {
     this.speed = 0.3;
     this.direction;
 
+    // 좌우 이동 중인지 아닌 지 판별하는 속성
+    this.runningState = false;
+    this.rafid;
+
     // 메서드 실행
     this.init();
 }
@@ -225,6 +229,20 @@ Character.prototype = {
         // 키보드 왼쪽, 오른쪽 방향키를 눌렀을 때 캐릭터 방향 회전 효과
         window.addEventListener('keydown', function(e) {
             // console.log(e.keyCode);
+
+            /*
+                if ( self.runningState ) return;
+                >> trun 면 리턴, 키다운이 반복되지 않음.
+                >> runningState 기본값은 false 로 되어 있다.
+                
+                >> false 였을 때 if문에 따라 작동이 되는데
+                이때도 반복작업을 없애기 위해 run() 실행 후
+                self.runningState 값을 true 로 바꿔준다.
+                이렇게 되면 키를 아무리 누르고 있어도 1번만 작동이 된다. 
+             */ 
+            if ( self.runningState ) return;
+
+            console.log('키다운');
             if ( e.keyCode == 37 ) {
                 // 왼쪽
                 self.direction = 'left'
@@ -246,6 +264,7 @@ Character.prototype = {
                 */
 
                 self.run(self);
+                self.runningState = true;
 
             } else if ( e.keyCode == 39) {
                 // 오른쪽
@@ -254,21 +273,17 @@ Character.prototype = {
                 self.mainElem.classList.add('running');
 
                 self.run(self);
+                self.runningState = true;
             }
         });
 
         // 키보드 키를 뗏을 때 이벤트
         // 키보드 키를 뗏을 때 캐릭터 모션 중지
         window.addEventListener('keyup', function(e) {
-            if ( e.keyCode == 37 ) {
-                // 왼쪽
-                // 뗏을 때 running 클래스 제거
-                self.mainElem.classList.remove('running');
-            } else if ( e.keyCode == 39) {
-                // 오른쪽
-                self.mainElem.setAttribute('data-direction', 'right');
-                self.mainElem.classList.remove('running');
-            }
+            // 뗏을 때 running 클래스 제거
+            self.mainElem.classList.remove('running');
+            // requestAnimationFrame 중지.
+            cancelAnimationFrame(self.rafid);
         });
         // 방향키 이벤트 -->
     },
@@ -318,7 +333,9 @@ Character.prototype = {
                강의 23 8:55 참고.
                Character-bind.js 참고
          */ 
-        requestAnimationFrame(function(){
+
+        // requestAnimationFrame 이 리턴될 때 발생되는 고유의 값을 refid에 적용
+        self.rafid = requestAnimationFrame(function(){
             self.run(self);
         });
     }
