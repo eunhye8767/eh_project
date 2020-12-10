@@ -62,6 +62,7 @@
 
 9. [09_animation] Transition/Animation 이벤트
    - Transition 이벤트 : /09_animation/09-1.html
+   - Transition 이벤트(테스트) : /09_animation/09-1-test.html
    - Animation 이벤트 :  /09_animation/09-2.html
 
 10. [10_timing] 타이밍 제어하기

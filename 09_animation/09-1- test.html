@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transition 이벤트</title>
+    <style>
+        .ball {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            /* margin: -15px 0 0 -15px; */
+            background: red;
+            border-radius: 50%;
+            transition: 1s;
+        }
+        .ball.end {
+            background: dodgerblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="ball"></div>
+
+    <script>
+        /*
+
+            문이 닫히지 않는 조건을 2개 적용했습니다.
+                1.  stage 클릭했을 때
+                2. 열려있는 문을 클릭했을 때
+
+            const ballElem = document.querySelector('.ball');
+            let defult = false;
+
+            window.addEventListener('click', function(e) {
+                ballElem.style.transform = 'translate(' + (e.clientX - 15) +'px, ' + (e.clientY - 15) + 'px)';
+
+                ballElem.addEventListener('transitionend', function(e) {
+                    if ( !defult ) {
+                        ballElem.classList.add('end');
+                        defult = true;    
+                        return;
+                    } else if ( defult) {
+                        ballElem.classList.remove('end');
+                        defult = false;    
+                        return;
+                    }
+                });
+                
+            });
+
+            위 소스로 구현하면 오류 발생...    
+         */
+        
+        /*
+            end 클래스가 추가되면 빨강 -> 파랑으로 트랜지션이 일어나고,
+            end 클래스가 제거되면 파랑 -> 빨강으로 트랜지션이 일어나죠?
+            즉 end 클래스가 추가되든 제거되든, 무조건 계속 transitionend 이벤트가 일어나서 무한 반복되는 현상입니다.
+            transitionend 대신 setTimeout으로 아래처럼 해보세요^^
+         */ 
+        const ballElem = document.querySelector('.ball');
+        let colorState = false;
+        let clickable = true;
+
+        window.addEventListener('click', function (e) {
+            ballElem.style.transform = 'translate(' + (e.clientX - 15) + 'px, ' + (e.clientY - 15) + 'px)';
+
+            if (!clickable) return;
+
+            clickable = false;
+
+            setTimeout(function () {
+            if (!colorState) {
+                ballElem.classList.add('end');
+                colorState = true;
+            } else {
+                ballElem.classList.remove('end');
+                colorState = false;
+            }
+            clickable = true;
+            }, 2000);
+        });
+        
+    </script>
+</body>
+</html>
