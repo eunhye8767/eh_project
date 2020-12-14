@@ -5,6 +5,9 @@
     const houseElem = document.querySelector('.house');
     const barElem = document.querySelector('.progress-bar');
 
+    // 캐릭터 버튼 체인지
+    const selectCharacterElem = document.querySelector('.select-character');
+
     const mousePos = { x: 0, y: 0 };
 
     // 스크롤 해야하는 높이 = 현재 문서의 높이 - 현재 브라우저 창의 높이
@@ -146,6 +149,15 @@
             xPos : e.clientX / window.innerWidth * 100,
             speed: Math.random() * 0.5 + 0.2
         });
+    });
+
+    // 캐릭터 클릭 시 캐릭터 변경하기
+    selectCharacterElem.addEventListener('click', function(e) {
+        // e.target을 통해 data- 속성값 알아내기
+        // console.log(e.target.getAttribute('data-char'))
+        const value = e.target.getAttribute('data-char');
+        // body에 data- 속성을 적용해준다.
+        document.body.setAttribute('data-char', value);
     });
 
     resizeHandler();

@@ -6,6 +6,9 @@
    - elem.style.mozTransform
    - 위 3개 방식 외엔 자동으로 해주는 autoprefixer 같은 라이브러리 사용
 
+2. 키보드 - key 별로 코드 번호 확인하는 법
+   - http://keycode.info/ 사이트에서 확인이 가능
+   - e.keyCode 로도 확인 가능 (강의 22,23 참고)
 
 # 인터랙티브 웹 개발 제대로 시작하기
 
@@ -72,4 +75,4 @@
    - requestAnimationFrame(시간 설정) : /10_timing/10-3-2.html
 
 11. [11_ex_3Dscroll] 종합예제) 전진! 3D 스크롤
-   - /11_ex_3Dscroll/11-1.html (작업중)
+   - /11_ex_3Dscroll/11-1.html
