@@ -284,6 +284,20 @@ Character.prototype = {
             self.mainElem.classList.remove('running');
             // requestAnimationFrame 중지.
             cancelAnimationFrame(self.rafid);
+            
+            /*
+                좌우 방향키가 딱 1번만 적용이 된다.
+                window.addEventListener('keyup', function(e)  이벤트에서
+                cancelAnimationFrame(self.rafid); 
+                requestAnimationFrame을 취소시켜 주지만 
+                self.runningState 의 값은 그대로 true 이기 때문에 
+                window.addEventListener('keydown', function(e) 이벤트에서
+                if ( self.runningState ) return; 참이기 때문에 실행이 안되었던 것.
+
+                console.log(self.runningState); 로 보면 true 라는 것을 확인할 수 있다.
+                그래서 self.runningState 값을 false 로 바꿔준다.
+             */ 
+            self.runningState = false;
         });
         // 방향키 이벤트 -->
     },
@@ -299,12 +313,28 @@ Character.prototype = {
                왼쪽인지 오른쪽인지 판단을 해야 해서
                생성자 함수에 direction 속성을 만든다.
          */ 
-        
         // xPos 값을 갱신하기 위해 if문을 사용한다.
         if ( self.direction == 'left' ) {
             self.xPos -= self.speed;
         } else if ( self.direction == 'right') {
             self.xPos += self.speed;
+        }
+
+        /*
+            생성된 캐릭터가 화면 밖을 뚫고 나가지 못 하게
+            console.log(self.xPos) 을 이용하여
+            왼쪽, 오른쪽 끝라인 자리의 % 값을 확인해본다.
+            확인한 결과 2~88% 범위가 적절하다.
+
+            위에 self.xPos 값이 계산된 후에
+            아래 if문을 통해 self.xPos 값을 변경해주면 된다.
+         */ 
+        // console.log(self.xPos);
+        if ( self.xPos < 2 ) {
+            self.xPos = 2
+        }
+        if ( self.xPos > 88 ) {
+            self.xPos = 88
         }
 
         // 갱신한 xPos 값을 적용해준다
