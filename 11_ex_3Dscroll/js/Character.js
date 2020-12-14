@@ -83,7 +83,11 @@ function Character(info) {
        this.xPos 속성을 추가해주고 값을 info.xPos 
      */  
     this.xPos = info.xPos;
-    this.speed = 0.3;
+    
+    // this.speed = 0.3;
+    // 동일한 캐릭터의 속도를 랜덤으로 지정
+    this.speed = info.speed;
+    console.log(this.speed);
     this.direction;
 
     // 좌우 이동 중인지 아닌 지 판별하는 속성

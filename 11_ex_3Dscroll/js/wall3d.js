@@ -131,7 +131,20 @@
                    예로 info 라고 적용 후
                    생성자 함수에서 consol.log(info.xPos) 적용하면 xPos 값을 확인할 수 있다.
             */ 
-            xPos : e.clientX / window.innerWidth * 100
+            /*
+                speed: Math.random() * 0.5 + 0.2
+                >> 생성된 캐릭터의 속도를 랜덤으로 지정
+                   Character.js 파일에서
+                   this.speed = info.speed; 수정을 해준다.
+                
+                >> random을 쓸 땐 앞에 Math 를 써준다.
+                   Math.random() 으로 써주면 된다. 1에 가까울 수록 빨라진다.
+                   speed: Math.random() * 0.5 + 0.2 를 해주면
+                   최소값을 .2초 이상으로 조정해줄 수 있고
+                   곱하거나 더해주면서 랜덤을 조절해줄 수 있다!!
+             */    
+            xPos : e.clientX / window.innerWidth * 100,
+            speed: Math.random() * 0.5 + 0.2
         });
     });
 
