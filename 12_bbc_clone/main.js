@@ -1,6 +1,13 @@
 // (function(){
 (() => {
 
+    // birdFlies 메서드로 등록
+    const actions = {
+        birdFlies() {
+            document.querySelector('[data-index="2"] .bird').style.transform = `translateX(${window.innerWidth}px)`;
+        }
+    }
+
     const stepElems = document.querySelectorAll('.step');
     const graphicElems = document.querySelectorAll('.graphic-item');
     
@@ -31,8 +38,12 @@
     }
 
     // 활성화 - currentItem 
-    function activate() {
+    function activate(action) {
         currentItem.classList.add('visible');
+        if ( action ) {
+            // actions 메서드를 실행한다.
+            actions[action]();
+        }
     }
 
     // 비활성화 - currentItem 
@@ -57,7 +68,9 @@
                  boundingRect.top < window.innerHeight * 0.8 ) {
                     inactivate();
                     currentItem = graphicElems[step.dataset.index];
-                    activate();
+                    
+                    // 현재 활성화된 currentItem 의 data-action 값을 가져와야 해서 아래처럼 써준다.;
+                    activate(currentItem.dataset.action);
             }
         }
     });
