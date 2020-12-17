@@ -10,6 +10,11 @@
    - http://keycode.info/ 사이트에서 확인이 가능
    - e.keyCode 로도 확인 가능 (강의 22,23 참고)
 
+3. 자바스크립트 Babel(바벨) 튜토리얼 
+   - 1분코딩 Youtube 영상 : https://youtu.be/VeK3a29x1hE
+   - 바벨 쓰는 이유 = 최신 버전 자바스크립트(ECMA 2015 이후/ES6)로 개발하고 
+   예전 방식의 자바스크립트 방식으로 배포하기 위해서 (구버전 웹브라우저 대응하기 위해 사용)
+
 # 인터랙티브 웹 개발 제대로 시작하기
 
 0. URL : https://eunhye8767.github.io/eh_project
