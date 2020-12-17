@@ -88,3 +88,5 @@
 13. [13_3d_leaflet] 3D 리플릿 만들기
    - 선행학습 1. ES6 템플릿 문자열 : /13_3d_leaflet/learning/template-string-1.html
    -     └ 바뀐 문자열 방식의 장점 : /13_3d_leaflet/learning/template-string-2.html
+   - 선행학습 2. requestAnimationFrame : /13_3d_leaflet/learning/request-ani.html
+   -   └ 로켓 이미지 움직이게 : /13_3d_leaflet/learning/request-ani-rocket.html

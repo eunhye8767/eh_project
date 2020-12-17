@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>requestAnimationFrame</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        	html {
+        		height: 100%;
+        	}
+        	body {
+        		display: flex;
+        		align-items: center;
+        		justify-content: center;
+        		height: 100%;
+        		margin: auto;
+        	}
+        	.ilbuni {
+        		position: absolute;
+        		width: 100px;
+        		left: 50%;
+        		bottom: 0;
+        		margin-left: -50px;
+        	}
+        	.value {
+        		margin-top: -5rem;
+        		font-size: 7rem;
+        		font-weight: 100;
+        		text-align: center;
+        	}
+        </style>
+    </head>
+
+    <body>
+        <img class="ilbuni" src="images/rocket.jpg" alt="로켓">
+        <div class="value">requestAnimationFrame</div>
+
+        <script>
+        	const ilbuni = document.querySelector('.ilbuni');
+        	const value = document.querySelector('.value');
+			let yPos = 0;
+
+			/*
+				innerHTML 로 먼저 값을 넣어줬기 떄문에 yPos++는 의미가 없다.
+				function render() {
+					value.innerHTML = yPos;
+					yPos++;
+				}
+
+				render();
+			 */ 
+			
+			function render() {
+				value.innerHTML = yPos;
+				yPos++;
+				
+				// 빠른속도로 1씩 증가가 된다.
+				// requestAnimationFrame 기본적인 방법으로 인자로 그 함수 이름을 넣어주면 된다.
+				// 초당 60번을 목표로 한다 (컴퓨터 성능 등에 따라 속도가 늦어질 수도 있다)
+				requestAnimationFrame(render);
+			}
+
+			render();
+
+        </script>
+    </body>
+</html>
