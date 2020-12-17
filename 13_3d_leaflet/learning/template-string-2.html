@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+    
+    <p class="message"></p>
+    <p class="message2"></p>
+
+    <script>
+        let yourName = '하하';
+
+        // 이전 방식은 아래처럼 줄넘김과 들여쓰기를 하려면 + 로 구분해서 표시해줬어야 했다.
+        const template = ''
+                + '<section>'
+                    + '<h2>'
+                        + yourName + '님 최고에요!'
+                    + '</h2>'
+                + '</section>';
+        
+        // 새 방식 백스틴으로 하게되면 아래처럼 간결하게! 변수에만 ${} 사용하면 된다.
+        const template2 = `
+                <section>
+                    <h2>
+                        ${yourName}님 최고에요!
+                    </h2>
+                </section>`;
+        
+        document.querySelector('.message').innerHTML = template;
+        document.querySelector('.message2').innerHTML = template2;
+
+    </script>
+
+</body>
+</html>
