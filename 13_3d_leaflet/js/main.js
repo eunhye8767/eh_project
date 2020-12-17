@@ -32,6 +32,38 @@
 		}, 500)
 	}
 
+	function zoomIn(elem) {
+		// elem = menuItemElem = li.menu-item 을 가르킨다.
+		// console.log(elem.getBoundingClientRect());
+		// getBoundingClientRect() 이용하여 left, top, width, height 등 값을 확인
+		const rect = elem.getBoundingClientRect();
+		// console.log(rect.x, rect.y);
+
+		// 현재 브라우저 기준, x좌표값에 width 크기의 1/2을 더한 값을 빼주면 가운데로 정렬
+		// x, y 는 몇몇 브라우저에서 지원이 안됨. left, top 으로 이용하도록!
+		const dx = window.innerWidth/2 - (rect.x + rect.width/2);
+		const dy = window.innerHeight/2 - (rect.y + rect.height/2);
+
+		let angle;
+
+		// data 값을 숫자로 바꾸기 위해 *1
+		switch(elem.parentNode.parentNode.parentNode.dataset.page *1) {
+			case 1:
+				angle = -30;
+				break;
+			case 2:
+				angle = 0;
+				break;
+			case 3:
+				angle = 30;
+				break;
+		}
+
+		// 카드 화면 전체를 움직인다.
+		leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`;
+
+	}
+
 	// 매개변수가 1개일 때는 () 괄호가 생략이 가능하다.
 	leaflet.addEventListener('click', e => {
 		let pageElem = getTarget(e.target, 'page');
@@ -47,6 +79,11 @@
 		let closeBtnElem = getTarget(e.target, 'close-btn');
 		if ( closeBtnElem ) {
 			closeLeafleat();	
+		}
+
+		let menuItemElem = getTarget(e.target, 'menu-item');
+		if ( menuItemElem ) {
+			zoomIn(menuItemElem);
 		}
 	})
 })();
