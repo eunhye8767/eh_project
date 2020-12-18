@@ -1,3 +1,16 @@
+# VS Code 설정 Tip
+## scss 할 때 상황에 맞게 컴파일러를 하기 위한 Tip
+> 왼쪽 톱니바퀴 아이콘 이미지 클릭 또는 파일 > 기본설정 > 설정 (ctrl + ,)
+> 설정 > 명령팔레트 또는 보기 > 명령팔레트 ( ctrl + shift + p), ctrl+p 눌러도 됨
+>  - ctrl + p 로 할 경우, 명령팔레트 창에서 > 써주면 된다.
+>  > 설정 > 명령팔레트 > settings.json 검색 
+>  > - 기본 설정 열기 = vs code 기본 설정값 (수정X)
+>  > - 설정 열기 = 원하는 설정값으로 변경 가능.  =  설정 > 사용자설정
+>  > - 작업 영역 설정 열기 = 해당 프로젝트에만 해당되게 설정값 적용
+>  >  > 1. 설정 > 사용자 에서 작업영역 옆 폴더명 선택 후 수정하면 해당 폴더에 .vscode 생성
+>  >  > 2. .vscode 폴더 > settings.json 파일 자동 생성
+>  >  > 3. 수정한 속성 값을 확인 할 수 있다.
+
 # Tip
 1. 질문. 벤더프리픽스를 해줘야 할 때 스크립트로 적용하면 어떻게 작업을 해줘야 하나요?
    - 바닐라 스크립트로 적용할 땐 아래 3개 방식으로 처리해줘야 한다.
@@ -81,7 +94,7 @@
 
 11. [11_ex_3Dscroll] 종합예제) 전진! 3D 스크롤
    - /11_ex_3Dscroll/11-1.html
-ㅎ
+
 12. [12_bbc_clone] BBC 인터랙티브 페이지 클론 코딩
    - /12_bbc_clone/index.html
 
@@ -91,4 +104,4 @@
    - 선행학습 2. requestAnimationFrame : /13_3d_leaflet/learning/request-ani.html
    -   └ 로켓 이미지 움직이게 : /13_3d_leaflet/learning/request-ani-rocket.html
    
-   - 3D 리플릿 만들기 : /13_3d_leaflet/3d_leaflet.html
+   - 3D 리플릿 만들기 : /13_3d_leaflet/3d_leaflet.html1. SASS(CSS Preprocessor)
