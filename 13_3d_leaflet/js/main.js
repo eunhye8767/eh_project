@@ -147,8 +147,10 @@
 		// hand.style.transform = `translaste(${e.clientX}px, ${e.clientY}px)`;     마우스 움직임을 따라가는 손의 위치가 매끄럽지 못함
 
 		// targetPos 값을 바꿔준다.
-		targetPos.x = e.clientX;
-		targetPos.y = e.clientY;
+		// main.css 에서 hand 의 디폴트값 설정(left 70%, top 70%)
+		// 디폴드값에 적용된 값만큼 마우스 위치에서 빼준다.
+		targetPos.x = e.clientX - window.innerWidth * 0.7;
+		targetPos.y = e.clientY - window.innerHeight * 0.7;
 	});
 
 })();
