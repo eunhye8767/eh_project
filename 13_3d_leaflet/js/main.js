@@ -1,4 +1,5 @@
 ( () => {
+	const hand = document.querySelector('.hand');
 	const leaflet = document.querySelector('.leaflet');
 	const pageElems = document.querySelectorAll('.page');
 
@@ -7,6 +8,16 @@
 
 	// 페이지가 2번 클릭되어 열렸을 때 close 버튼이 보이게
 	let pageCount = 0;
+
+
+	// 현재 손의 위치
+	const handPos = {x: 0, y: 0};
+	
+	// 마우스 (타겟) 위치
+	const targetPos = {x: 0, y: 0};
+
+	let distX;
+	let distY;
 
 	// e.target 에 클래스 명이 맞는 지 함수로 만들었을 때
 	// 피라미트값에 e.target => elem, 'page' => className
@@ -80,6 +91,28 @@
 		}
 	}
 
+	function render() {
+		// 마우스와 손의 거리를 requestAnimationFrame을 이용해 거리를 좁히려고 한다
+		// const handPos = {x: 0, y: 0}; const targetPos = {x: 0, y: 0}; 2개의 객체를 만들어서 이용.
+		
+		// distX, distY = 마우스와 손의 위치의 거리.
+		distX = targetPos.x - handPos.x;
+		distY = targetPos.y - handPos.y;
+
+		// 0.1 은 마우스와 손 위치의 거리에서 1/10 만큼 이동하겠다 
+		// requestAnimationFrame 함수를 이용해 이 부분을 0이 될 때까지 반복
+		// 마우스와 손 위치의 거리가 줄어든 만큼 1/10 씩 움직이기 때문에 가속력이 적용되어 있는 것처럼 보임.
+		handPos.x = handPos.x + distX * 0.1;		
+		handPos.y = handPos.y + distY * 0.1;		
+
+		// 마우스 쪽에 가깝게 손의 위치를 바꾸기 위해 -, + 를 해줌.
+		hand.style.transform = `translate(${handPos.x-60}px, ${handPos.y + 30}px)`;
+
+		requestAnimationFrame(render);
+	}
+
+	render();
+
 	// 매개변수가 1개일 때는 () 괄호가 생략이 가능하다.
 	leaflet.addEventListener('click', e => {
 		let pageElem = getTarget(e.target, 'page');
@@ -107,5 +140,15 @@
 		if ( backBtn ) {
 			zoomOut();
 		}
-	})
+	});
+
+	window.addEventListener('mousemove', e => {
+		// console.log(e.clientX, e.clientY);
+		// hand.style.transform = `translaste(${e.clientX}px, ${e.clientY}px)`;     마우스 움직임을 따라가는 손의 위치가 매끄럽지 못함
+
+		// targetPos 값을 바꿔준다.
+		targetPos.x = e.clientX;
+		targetPos.y = e.clientY;
+	});
+
 })();
