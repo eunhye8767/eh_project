@@ -142,6 +142,10 @@
 		}
 	});
 
+	leaflet.addEventListener('animationend', () => {
+		leaflet.style.animation = 'none';
+	});
+
 	window.addEventListener('mousemove', e => {
 		// console.log(e.clientX, e.clientY);
 		// hand.style.transform = `translaste(${e.clientX}px, ${e.clientY}px)`;     마우스 움직임을 따라가는 손의 위치가 매끄럽지 못함
