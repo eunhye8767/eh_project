@@ -63,12 +63,21 @@
 		}
 
 		document.body.classList.add('zoom-in');
-		
+
 		// 카드 화면 전체를 움직인다.
 		leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`;
 
 		currentMenu = elem;
 		elem.classList.add('current-menu');
+	}
+
+	function zoomOut() {
+		leaflet.style.transform = `translate3d(0px, 0px, 0)`;
+		if ( currentMenu ) {
+			document.body.classList.remove('zoom-in');
+			currentMenu.classList.remove('current-menu');
+			currentMenu = null;
+		}
 	}
 
 	// 매개변수가 1개일 때는 () 괄호가 생략이 가능하다.
@@ -86,11 +95,17 @@
 		let closeBtnElem = getTarget(e.target, 'close-btn');
 		if ( closeBtnElem ) {
 			closeLeafleat();	
+			zoomOut();
 		}
 
 		let menuItemElem = getTarget(e.target, 'menu-item');
 		if ( menuItemElem ) {
 			zoomIn(menuItemElem);
+		}
+
+		let backBtn = getTarget(e.target, 'back-btn');
+		if ( backBtn ) {
+			zoomOut();
 		}
 	})
 })();
