@@ -2,6 +2,9 @@
 	const leaflet = document.querySelector('.leaflet');
 	const pageElems = document.querySelectorAll('.page');
 
+	// 클릭한 메뉴 아이템을 저장할 변수
+	let currentMenu;
+
 	// 페이지가 2번 클릭되어 열렸을 때 close 버튼이 보이게
 	let pageCount = 0;
 
@@ -59,9 +62,13 @@
 				break;
 		}
 
+		document.body.classList.add('zoom-in');
+		
 		// 카드 화면 전체를 움직인다.
 		leaflet.style.transform = `translate3d(${dx}px, ${dy}px, 50vw) rotateY(${angle}deg)`;
 
+		currentMenu = elem;
+		elem.classList.add('current-menu');
 	}
 
 	// 매개변수가 1개일 때는 () 괄호가 생략이 가능하다.

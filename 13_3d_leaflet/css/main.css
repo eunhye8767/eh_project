@@ -95,21 +95,27 @@ body {
 	padding: 2em;
 	transition: 0.5s;
 }
+
+/* zoom-in 상태일 때 */
 .zoom-in .menu-item {
 	opacity: 0;
 }
 .zoom-in .menu-item.current-menu {
 	opacity: 1;
 }
+
 .back-btn {
 	display: none;
 	position: absolute;
 	right: 10px;
 	top: 10px;
 }
+
+/* zoom-in 상태일 때 */
 .current-menu .back-btn {
 	display: inline-block;
 }
+
 .menu-item-photo {
 	width: 20%;
 	padding-bottom: 20%;
