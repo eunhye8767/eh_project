@@ -17,6 +17,7 @@ body {
     font-family: 'Playfair Display', serif;
     overflow: hidden;
 }
+.zoom-in * { pointer-events: none;}
 
 .hand {
     position: absolute;
@@ -129,7 +130,7 @@ body {
 	opacity: 0;
 }
 .zoom-in .menu-item.current-menu {
-	opacity: 1;
+    opacity: 1;
 }
 
 .back-btn {
@@ -141,7 +142,8 @@ body {
 
 /* zoom-in 상태일 때 */
 .current-menu .back-btn {
-	display: inline-block;
+    display: inline-block;
+    pointer-events: auto;
 }
 
 .menu-item-photo {
